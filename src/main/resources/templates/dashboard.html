@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>GameStore Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>🎮 GameStore Analytics</h1>
+<p>Resumen de la base de datos en tiempo real</p>
+
+<div class="contenedor-tarjetas">
+
+    <div class="tarjeta">
+        <h2>Catálogo de Juegos</h2>
+        <p class="numero" th:text="${totalJuegos}">0</p>
+    </div>
+
+    <div class="tarjeta">
+        <h2>Nuestros Clientes</h2>
+        <p class="numero" th:text="${totalClientes}">0</p>
+    </div>
+
+    <div class="tarjeta">
+        <h2>Desarrolladoras</h2>
+        <p class="numero" th:text="${totalDesarrolladoras}">0</p>
+    </div>
+
+</div>
+
+</body>
+</html>
