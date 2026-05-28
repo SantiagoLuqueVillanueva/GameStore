@@ -19,7 +19,7 @@ public class DesarrolladorWebController {
     @GetMapping
     public String listar(Model model) {
         model.addAttribute("desarrolladoras", repository.findAll());
-        return "desarrolladoras/list"; // Carpeta desarrolladoras, archivo lista.html
+        return "desarrolladoras/list";
     }
 
     @GetMapping("/nueva")

@@ -1,6 +1,5 @@
 package com.example.store.repository;
 
-import com.example.store.entity.Desarrollador;
 import com.example.store.entity.Juegos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
