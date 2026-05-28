@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Juegos</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Catálogo de Videojuegos</h1>
+
+<a th:href="@{/juegos/nuevo}" style="color: #00d2ff; font-weight: bold;">+ Añadir Nuevo Juego</a>
+<br><br>
+
+<table border="1" style="margin: 0 auto; width: 80%; border-collapse: collapse; text-align: center;">
+    <thead>
+    <tr style="background-color: #2a2a40;">
+        <th>ID</th>
+        <th>Portada</th>
+        <th>Título</th>
+        <th>Precio</th>
+        <th>Desarrolladora</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="juego : ${juegos}">
+        <td th:text="${juego.id}">1</td>
+
+        <td>
+            <img th:if="${juego.imagenUrl != null and !juego.imagenUrl.isEmpty()}"
+                 th:src="${juego.imagenUrl}"
+                 style="width: 60px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);"
+                 alt="Portada"/>
+            <span th:unless="${juego.imagenUrl != null and !juego.imagenUrl.isEmpty()}"
+                  style="color: gray; font-size: 0.8em;">Sin portada</span>
+        </td>
+
+        <td th:text="${juego.titulo}">Zelda</td>
+        <td th:text="${juego.precio} + ' €'">59.99 €</td>
+        <td th:text="${juego.desarrolladora != null ? juego.desarrolladora.nombre : 'Sin asignar'}">Nintendo</td>
+        <td>
+            <a th:href="@{/juegos/editar/{id}(id=${juego.id})}">✏️ Editar</a> |
+            <a th:href="@{/juegos/borrar/{id}(id=${juego.id})}"
+               onclick="return confirm('¿Borrar este juego?');">🗑️ Borrar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a th:href="@{/dashboard}">Volver al Dashboard</a>
+</body>
+</html>

@@ -40,3 +40,31 @@ body {
     margin: 10px 0;
     color: #00d2ff;
 }
+
+.menu-navegacion {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #2a2a40;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-nav {
+    background-color: #1e1e2f;
+    color: #00d2ff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    border: 2px solid #00d2ff;
+    transition: all 0.3s ease;
+}
+
+.btn-nav:hover {
+    background-color: #00d2ff;
+    color: #1e1e2f;
+    transform: scale(1.05);
+}

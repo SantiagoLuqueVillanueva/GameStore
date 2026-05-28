@@ -2,16 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>GameStore Dashboard</title>
+    <title>GameStore - Inicio</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
 <h1>🎮 GameStore Analytics</h1>
-<p>Resumen de la base de datos en tiempo real</p>
+<p>Panel de control principal</p>
+
+<div class="menu-navegacion">
+    <a th:href="@{/juegos}" class="btn-nav">👾 Catálogo de Juegos</a>
+    <a th:href="@{/desarrolladoras}" class="btn-nav">🏢 Desarrolladoras</a>
+    <a th:href="@{/clientes}" class="btn-nav">👤 Clientes</a>
+    <a th:href="@{/compras}" class="btn-nav">🛒 Hacer y Consultar Ventas</a>
+</div>
 
 <div class="contenedor-tarjetas">
-
     <div class="tarjeta">
         <h2>Catálogo de Juegos</h2>
         <p class="numero" th:text="${totalJuegos}">0</p>
@@ -26,8 +32,59 @@
         <h2>Desarrolladoras</h2>
         <p class="numero" th:text="${totalDesarrolladoras}">0</p>
     </div>
-
 </div>
+<hr style="margin: 40px auto; width: 90%; border: 1px solid #2a2a40;">
 
+<h2>👾 Catálogo Reciente de Juegos</h2>
+<table border="1"
+       style="margin: 0 auto; width: 90%; border-collapse: collapse; text-align: center; margin-bottom: 40px;">
+    <thead>
+    <tr style="background-color: #2a2a40;">
+        <th>Portada</th>
+        <th>Título</th>
+        <th>Precio</th>
+        <th>Desarrolladora</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="juego : ${juegos}">
+        <td>
+            <img th:if="${juego.imagenUrl != null and !juego.imagenUrl.isEmpty()}"
+                 th:src="${juego.imagenUrl}"
+                 style="width: 50px; border-radius: 5px;" alt="Portada"/>
+            <span th:unless="${juego.imagenUrl != null and !juego.imagenUrl.isEmpty()}"
+                  style="color: gray; font-size: 0.8em;">Sin portada</span>
+        </td>
+        <td th:text="${juego.titulo}">Zelda</td>
+        <td th:text="${juego.precio} + ' €'">59.99 €</td>
+        <td th:text="${juego.desarrolladora != null ? juego.desarrolladora.nombre : 'Sin asignar'}">Nintendo</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>🏢 Estudios de Desarrollo</h2>
+<table border="1"
+       style="margin: 0 auto; width: 90%; border-collapse: collapse; text-align: center; margin-bottom: 40px;">
+    <thead>
+    <tr style="background-color: #2a2a40;">
+        <th>Logo</th>
+        <th>Nombre</th>
+        <th>País</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="des : ${desarrolladoras}">
+        <td>
+            <img th:if="${des.imagenUrl != null and !des.imagenUrl.isEmpty()}"
+                 th:src="${des.imagenUrl}"
+                 style="width: 60px; border-radius: 5px; background-color: white; padding: 2px;" alt="Logo"/>
+            <span th:unless="${des.imagenUrl != null and !des.imagenUrl.isEmpty()}"
+                  style="color: gray; font-size: 0.8em;">Sin logo</span>
+        </td>
+        <td th:text="${des.nombre}">Nintendo</td>
+        <td th:text="${des.pais}">Japón</td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

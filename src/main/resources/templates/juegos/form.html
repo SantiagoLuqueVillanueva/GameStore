@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Juego</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1 th:text="${juego.id == null ? 'Nuevo Videojuego' : 'Editar Videojuego'}">Formulario</h1>
+
+<div class="tarjeta" style="margin: 0 auto; width: 300px;">
+    <form th:action="@{/juegos/guardar}" th:object="${juego}" method="post">
+
+        <input type="hidden" th:field="*{id}"/>
+
+        <div style="margin-bottom: 15px;">
+            <label>Título del Juego:</label><br>
+            <input type="text" th:field="*{titulo}" required style="width: 100%; padding: 5px;"/>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Precio (€):</label><br>
+            <input type="number" step="0.01" th:field="*{precio}" required style="width: 100%; padding: 5px;"/>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Desarrolladora:</label><br>
+            <select th:field="*{desarrolladora}" required style="width: 100%; padding: 5px;">
+                <option value="">-- Selecciona un Estudio --</option>
+                <option th:each="des : ${listaDesarrolladoras}"
+                        th:value="${des.id}"
+                        th:text="${des.nombre}"></option>
+            </select>
+        </div>
+
+        <div style="margin-bottom: 25px;">
+            <label>Enlace de la Portada <span style="color: #aaa; font-size: 0.9em;">(Opcional)</span>:</label><br>
+            <input type="url" th:field="*{imagenUrl}" style="width: 100%; padding: 5px;" placeholder="https://..."/>
+        </div>
+
+        <button type="submit"
+                style="padding: 10px; background-color: #00d2ff; border: none; cursor: pointer; width: 100%; font-weight: bold;">
+            Guardar
+        </button>
+    </form>
+</div>
+
+<br>
+<a th:href="@{/juegos}">Cancelar y volver</a>
+</body>
+</html>

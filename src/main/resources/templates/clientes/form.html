@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Cliente</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1 th:text="${cliente.id == null ? 'Nuevo Cliente' : 'Editar Cliente'}">Formulario</h1>
+
+<div class="tarjeta" style="margin: 0 auto; width: 300px;">
+    <form th:action="@{/clientes/guardar}" th:object="${cliente}" method="post">
+
+        <input type="hidden" th:field="*{id}"/>
+
+        <div style="margin-bottom: 15px;">
+            <label>Nombre:</label><br>
+            <input type="text" th:field="*{nombre}" required style="width: 100%; padding: 5px;"/>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Apellidos:</label><br>
+            <input type="text" th:field="*{apellidos}" required style="width: 100%; padding: 5px;"/>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Email:</label><br>
+            <input type="email" th:field="*{email}" required style="width: 100%; padding: 5px;"/>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Fecha de Nacimiento:</label><br>
+            <input type="date" th:field="*{fechaNacimiento}" required style="width: 100%; padding: 5px;"/>
+        </div>
+
+        <button type="submit"
+                style="padding: 10px; background-color: #00d2ff; border: none; cursor: pointer; width: 100%; font-weight: bold;">
+            Guardar
+        </button>
+    </form>
+</div>
+
+<br>
+<a th:href="@{/clientes}">Cancelar y volver</a>
+</body>
+</html>

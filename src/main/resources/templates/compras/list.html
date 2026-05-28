@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Historial de Ventas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Historial de Compras</h1>
+
+<a th:href="@{/compras/nueva}" style="color: #00d2ff; font-weight: bold;">🛒 Registrar Nueva Venta</a>
+
+<br><br>
+
+<table border="1" style="margin: 0 auto; width: 90%; border-collapse: collapse; text-align: center;">
+    <thead>
+    <tr style="background-color: #2a2a40;">
+        <th>Nº Ticket</th>
+        <th>Fecha</th>
+        <th>Cliente</th>
+        <th>Juego Comprado</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="compra : ${compras}">
+        <td th:text="${compra.id}">1</td>
+        <td th:text="${compra.fechaCompra}">2026-05-28</td>
+        <td th:text="${compra.cliente.nombre} + ' ' + ${compra.cliente.apellidos}">Santi Luque</td>
+        <td th:text="${compra.juego.titulo}">Zelda</td>
+        <td th:text="${compra.juego.precio} + ' €'">59.99 €</td>
+        <td>
+            <a th:href="@{/compras/borrar/{id}(id=${compra.id})}"
+               onclick="return confirm('¿Anular este ticket de compra?');" style="color: #ff4c4c;">🗑️ Anular</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a th:href="@{/dashboard}">Volver al Dashboard</a>
+</body>
+</html>

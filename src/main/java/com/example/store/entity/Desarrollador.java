@@ -4,16 +4,17 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "desarrolladoras", schema = "public")
-public class Desarrollador{
+public class Desarrollador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long  id;
+    private Long id;
 
     @NotBlank
     @Size(max = 100)
@@ -28,7 +29,10 @@ public class Desarrollador{
     @OneToMany(mappedBy = "desarrolladora", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Juegos> juegos = new ArrayList<>();
 
-    public Desarrollador(){
+    @Column(length = 500)
+    private String imagenUrl;
+
+    public Desarrollador() {
     }
 
     public Long getId() {
@@ -61,5 +65,13 @@ public class Desarrollador{
 
     public List<Juegos> getJuegos() {
         return juegos;
+    }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
     }
 }

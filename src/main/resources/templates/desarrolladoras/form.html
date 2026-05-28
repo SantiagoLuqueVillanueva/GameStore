@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Desarrolladora</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<h1 th:text="${desarrolladora.id == null ? 'Nueva Desarrolladora' : 'Editar Desarrolladora'}">Formulario</h1>
+
+<div class="tarjeta" style="margin: 0 auto;">
+    <form th:action="@{/desarrolladoras/guardar}" th:object="${desarrolladora}" method="post">
+
+        <input type="hidden" th:field="*{id}"/>
+
+        <div style="margin-bottom: 15px;">
+            <label>Nombre del Estudio:</label><br>
+            <input type="text" th:field="*{nombre}" required/>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>País de origen:</label><br>
+            <input type="text" th:field="*{pais}" required/>
+        </div>
+
+        <div style="margin-bottom: 25px;">
+            <label>Enlace del Logo <span style="color: #aaa; font-size: 0.9em;">(Opcional)</span>:</label><br>
+            <input type="url" th:field="*{imagenUrl}" style="width: 100%; padding: 5px;" placeholder="https://..."/>
+        </div>
+
+        <button type="submit" style="padding: 10px; background-color: #00d2ff; border: none; cursor: pointer;">
+            Guardar
+        </button>
+    </form>
+</div>
+
+<br>
+<a th:href="@{/desarrolladoras}">Cancelar y volver a la lista</a>
+</body>
+</html>

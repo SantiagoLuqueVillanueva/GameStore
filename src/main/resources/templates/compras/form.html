@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Venta</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Registrar Nueva Compra</h1>
+
+<div class="tarjeta" style="margin: 0 auto; width: 350px;">
+    <form th:action="@{/compras/guardar}" method="post">
+
+        <div style="margin-bottom: 15px;">
+            <label>Seleccionar Cliente:</label><br>
+            <select name="clienteId" required style="width: 100%; padding: 8px;">
+                <option value="">-- Elige un cliente --</option>
+                <option th:each="cli : ${clientes}"
+                        th:value="${cli.id}"
+                        th:text="${cli.nombre} + ' ' + ${cli.apellidos}"></option>
+            </select>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Videojuego a comprar:</label><br>
+            <select name="juegoId" required style="width: 100%; padding: 8px;">
+                <option value="">-- Elige un juego --</option>
+                <option th:each="juego : ${juegos}"
+                        th:value="${juego.id}"
+                        th:text="${juego.titulo} + ' (' + ${juego.precio} + '€)'"></option>
+            </select>
+        </div>
+
+        <button type="submit"
+                style="padding: 10px; background-color: #00d2ff; border: none; cursor: pointer; width: 100%; font-weight: bold;">
+            Confirmar Venta
+        </button>
+    </form>
+</div>
+
+<br>
+<a th:href="@{/compras}">Cancelar y volver</a>
+</body>
+</html>

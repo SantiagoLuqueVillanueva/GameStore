@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Clientes</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Gestión de Clientes</h1>
+
+<a th:href="@{/clientes/nuevo}" style="color: #00d2ff; font-weight: bold;">+ Añadir Nuevo Cliente</a>
+
+<br><br>
+
+<table border="1" style="margin: 0 auto; width: 80%; border-collapse: collapse; text-align: center;">
+    <thead>
+    <tr style="background-color: #2a2a40;">
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Email</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cli : ${clientes}">
+        <td th:text="${cli.id}">1</td>
+        <td th:text="${cli.nombre}">Santiago</td>
+        <td th:text="${cli.apellidos}">Luque</td>
+        <td th:text="${cli.email}">santiago@email.com</td>
+        <td>
+            <a th:href="@{/clientes/editar/{id}(id=${cli.id})}">✏️ Editar</a> |
+            <a th:href="@{/clientes/borrar/{id}(id=${cli.id})}"
+               onclick="return confirm('¿Estás seguro de borrar este cliente?');">🗑️ Borrar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a th:href="@{/dashboard}">Volver al Dashboard</a>
+</body>
+</html>

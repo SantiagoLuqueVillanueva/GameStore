@@ -14,17 +14,27 @@ public class DashboardWebController {
     private final JuegosRepository juegosRepository;
     private final DesarrolladorRepository desarrolladorRepository;
 
-    public DashboardWebController(ClientesRepository clientesRepository, JuegosRepository juegosRepository, DesarrolladorRepository desarrolladorRepository) {
+    public DashboardWebController(ClientesRepository clientesRepository,
+                                  JuegosRepository juegosRepository,
+                                  DesarrolladorRepository desarrolladorRepository) {
         this.clientesRepository = clientesRepository;
         this.juegosRepository = juegosRepository;
         this.desarrolladorRepository = desarrolladorRepository;
     }
 
+    @GetMapping("/")
+    public String inicio() {
+        return "redirect:/dashboard";
+    }
+
     @GetMapping("/dashboard")
-    public String verDashboard(Model model) {
+    public String dashboard(Model model) {
         model.addAttribute("totalClientes", clientesRepository.count());
         model.addAttribute("totalJuegos", juegosRepository.count());
         model.addAttribute("totalDesarrolladoras", desarrolladorRepository.count());
+        model.addAttribute("juegos", juegosRepository.findAll());
+        model.addAttribute("desarrolladoras", desarrolladorRepository.findAll());
+
         return "dashboard";
     }
 }

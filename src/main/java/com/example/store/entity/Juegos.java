@@ -5,6 +5,7 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
 import java.math.BigDecimal;
 
 @Entity
@@ -29,7 +30,10 @@ public class Juegos {
     @JoinColumn(name = "desarrolladora_id")
     private Desarrollador desarrolladora;
 
-    public Juegos (){
+    @Column(length = 500)
+    private String imagenUrl;
+
+    public Juegos() {
     }
 
     public Long getId() {
@@ -62,5 +66,13 @@ public class Juegos {
 
     public Desarrollador getDesarrolladora() {
         return desarrolladora;
+    }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
     }
 }
